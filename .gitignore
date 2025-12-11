@@ -36,6 +36,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 secrets/
-.terraform.lock.hcl
+
 agent/
 scenario1/
