@@ -1,13 +1,14 @@
 terraform {
   cloud {
-    organization = "terraform-tom"
+    hostname = "tfe-pi-new.nick-philbrook.sbx.hashidemos.io"
+    organization = "philbrook-tfe"
     workspaces {
       name = "lock-file-test"
     }
   }
   required_providers {
     random = {
-      source  = "app.terraform.io/terraform-tom/random"
+      source  = "tfe-pi-new.nick-philbrook.sbx.hashidemos.io/philbrook-tfe/random"
       version = "3.7.2"
     }
   }

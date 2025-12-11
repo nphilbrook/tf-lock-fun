@@ -4,7 +4,7 @@ dotenv: ['.env', 'secrets/.env']
 
 vars:
   VERSION: 3.7.2
-  ORGANIZATION: terraform-tom
+  ORGANIZATION: philbrook-tfe
   GPG_THUMBPRINT: AFC1C107266559F0
 tasks:
   pr:delete:
