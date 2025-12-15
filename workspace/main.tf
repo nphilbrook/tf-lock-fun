@@ -46,6 +46,17 @@ resource "terracurl_request" "wait" {
 #   timeout        = 7200
 # }
 
+resource "terraform_data" "wait" {
+  provisioner "local-exec" {
+    command = "while [ ! -f /home/ubuntu/agent/finish_plan ]; do sleep 1; done"
+    when    = create
+  }
+  # provisioner "local-exec" {
+  #   command = "while [ ! -f /home/ubuntu/agent/finish_apply ]; do sleep 1; done"
+  #   when    = apply
+  # }
+}
+
 resource "random_pet" "name" {
   prefix = timestamp()
 }
