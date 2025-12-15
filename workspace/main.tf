@@ -29,33 +29,33 @@ resource "terracurl_request" "wait" {
     timestamp = timestamp()
   }
 
-  skip_read           = false
-  read_url            = "http://localhost:8080/"
-  read_method         = "GET"
-  read_response_codes = ["200"]
+  # skip_read           = false
+  # read_url            = "http://localhost:8080/"
+  # read_method         = "GET"
+  # read_response_codes = ["200"]
 
   timeout = 7200
 }
 
 # This will be called on every plan
-# data "terracurl_request" "wait" {
-#   method         = "GET"
-#   name           = "wait"
-#   response_codes = ["200"]
-#   url            = "http://localhost:8080/"
-#   timeout        = 7200
-# }
-
-resource "terraform_data" "wait" {
-  provisioner "local-exec" {
-    command = "while [ ! -f /home/ubuntu/agent/finish_plan ]; do sleep 1; done"
-    when    = create
-  }
-  # provisioner "local-exec" {
-  #   command = "while [ ! -f /home/ubuntu/agent/finish_apply ]; do sleep 1; done"
-  #   when    = apply
-  # }
+data "terracurl_request" "wait" {
+  method         = "GET"
+  name           = "wait"
+  response_codes = ["200"]
+  url            = "http://localhost:8080/"
+  timeout        = 7200
 }
+
+# resource "terraform_data" "wait" {
+#   provisioner "local-exec" {
+#     command = "while [ ! -f /home/ubuntu/agent/finish_plan ]; do sleep 1; done"
+#     when    = create
+#   }
+#   # provisioner "local-exec" {
+#   #   command = "while [ ! -f /home/ubuntu/agent/finish_apply ]; do sleep 1; done"
+#   #   when    = apply
+#   # }
+# }
 
 resource "random_pet" "name" {
   prefix = timestamp()
