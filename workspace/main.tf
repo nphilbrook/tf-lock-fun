@@ -18,7 +18,7 @@ terraform {
   }
 }
 
-data "terracurl_request" "wait" {
+resource "terracurl_request" "wait" {
   method         = "GET"
   name           = "wait"
   response_codes = ["200"]
