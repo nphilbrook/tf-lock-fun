@@ -25,6 +25,9 @@ resource "terracurl_request" "wait" {
   name           = "wait"
   response_codes = ["200"]
   url            = "http://localhost:8080/"
+  request_parameters = {
+    timestamp = timestamp()
+  }
 
   skip_read           = false
   read_url            = "http://localhost:8080/"
@@ -35,13 +38,13 @@ resource "terracurl_request" "wait" {
 }
 
 # This will be called on every plan
-data "terracurl_request" "wait" {
-  method         = "GET"
-  name           = "wait"
-  response_codes = ["200"]
-  url            = "http://localhost:8080/"
-  timeout        = 7200
-}
+# data "terracurl_request" "wait" {
+#   method         = "GET"
+#   name           = "wait"
+#   response_codes = ["200"]
+#   url            = "http://localhost:8080/"
+#   timeout        = 7200
+# }
 
 resource "random_pet" "name" {
   prefix = timestamp()
