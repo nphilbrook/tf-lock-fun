@@ -65,6 +65,10 @@ output "name" {
   value = random_pet.name.id
 }
 
-output "wait_timestamp" {
+output "wait_timestamp_data" {
+  value = jsondecode(data.terracurl_request.wait.response).timestamp
+}
+
+output "wait_timestamp_resource" {
   value = jsondecode(terracurl_request.wait.response).timestamp
 }
