@@ -38,13 +38,13 @@ resource "terracurl_request" "wait" {
 }
 
 # This will be called on every plan
-# data "terracurl_request" "wait" {
-#   method         = "GET"
-#   name           = "wait"
-#   response_codes = ["200"]
-#   url            = "http://localhost:8080/"
-#   timeout        = 7200
-# }
+data "terracurl_request" "wait" {
+  method         = "GET"
+  name           = "wait"
+  response_codes = ["200"]
+  url            = "http://localhost:8080/"
+  timeout        = 7200
+}
 
 # resource "terraform_data" "wait" {
 #   provisioner "local-exec" {
@@ -65,9 +65,9 @@ output "name" {
   value = random_pet.name.id
 }
 
-# output "wait_timestamp_data" {
-#   value = jsondecode(data.terracurl_request.wait.response).timestamp
-# }
+output "wait_timestamp_data" {
+  value = jsondecode(data.terracurl_request.wait.response).timestamp
+}
 
 output "wait_timestamp_resource" {
   value = jsondecode(terracurl_request.wait.response).timestamp
