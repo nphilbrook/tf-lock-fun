@@ -3,7 +3,7 @@ terraform {
     hostname     = "tfe-pi-new.nick-philbrook.sbx.hashidemos.io"
     organization = "philbrook-tfe"
     workspaces {
-      name = "lock-file-test"
+      name = "tf-lock-fun"
     }
   }
   required_providers {
@@ -19,6 +19,7 @@ terraform {
 }
 
 # Force this resource to be re-created on every apply to have the intended effect (wait during apply)
+# TF_CLI_ARGS_plan="-replace=terracurl_request.wait" in your workspace ENV vars will do it
 resource "terracurl_request" "wait" {
   method         = "GET"
   name           = "wait"
@@ -51,5 +52,5 @@ output "name" {
 }
 
 output "wait_timestamp" {
-  value = data.terracurl_request.wait.response
+  value = jsondecode(terracurl_request.wait.response).timestamp
 }
