@@ -21,7 +21,7 @@ terraform {
 # Force this resource to be re-created on every apply to have the intended effect (wait during apply)
 # TF_CLI_ARGS_plan="-replace=terracurl_request.wait" in your workspace ENV vars will do it
 resource "terracurl_request" "wait" {
-  method         = "GET"
+  method         = "POST"
   name           = "wait"
   response_codes = ["200"]
   url            = "http://localhost:8080/"
